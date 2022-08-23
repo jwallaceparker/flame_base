@@ -9,8 +9,8 @@ import 'package:flame/game.dart';
 import 'package:flame/geometry.dart';
 import 'package:flutter/material.dart';
 
-// Player code
-class Player extends PositionComponent with Tappable {
+// Orange Button
+class ShotControl extends PositionComponent with Tappable {
   static final _paint = Paint()..color = Colors.orange;
 
   @override
@@ -38,13 +38,6 @@ class Player extends PositionComponent with Tappable {
   }
 }
 
-class PowerMeter extends RectangleComponent {
-  final paint1 = Paint()
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = 5.0
-    ..color = Colors.deepOrange;
-}
-
 // Box moving code
 class MeterGame extends FlameGame with HasTappables {
   @override
@@ -60,6 +53,7 @@ class MeterGame extends FlameGame with HasTappables {
       ..color = Colors.deepOrange;
 
     // Red square, moving back and forth
+    // TODO: move this into its own class
     add(
       RectangleComponent.square(
         // position: Vector2(200, 50),
@@ -68,7 +62,6 @@ class MeterGame extends FlameGame with HasTappables {
         paint: paint1,
       )..add(
           MoveEffect.to(
-            // Vector2(200, 550),
             Vector2(350, 260),
             EffectController(
               duration: 0.4,
@@ -80,9 +73,9 @@ class MeterGame extends FlameGame with HasTappables {
         ),
     );
 
-    // Player
+    // ShotControl
     add(
-      Player()
+      ShotControl()
         ..position = Vector2(200, 560)
         ..width = 48
         ..height = 48
